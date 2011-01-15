@@ -12,3 +12,12 @@ exports.makeRequest = function (params, callback) {
     request.end(params.body, 'utf8');
 };
 
+exports.stub = function (target, fn) {
+    var originalPrototype = target.prototype;
+    target.prototype = fn;
+    return {
+        restore: function () {
+            target.prototype = originalPrototype;
+        }
+    };
+};
