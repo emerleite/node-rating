@@ -1,10 +1,11 @@
-process.env.NODE_ENV = 'test';
-require.paths.unshift('vendor/mongoose');
+require('./helper/test-helper');
+
+//console.log(require.paths);
 
 var testCase = require('nodeunit').testCase,
     mongoose = require('mongoose').Mongoose,
     db = mongoose.connect('mongodb://localhost/rating_test'),
-    Hit = require('../lib/hit').Hit(db);
+    Hit = require('hit').Hit(db);
 
 module.exports = testCase({
     setUp: function (callback) {

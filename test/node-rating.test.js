@@ -1,15 +1,8 @@
-process.env.NODE_ENV = 'test';
+var testHelper = require('./helper/test-helper');
 
 var app = require('../node-rating'),
-    http = require('http'),
     testCase = require('nodeunit').testCase;
-
-function makeRequest(params, callback) {
-    var client = http.createClient(params.port, params.host);
-    var request = client.request(params.method, params.uri, {'host': params.host +':' + params.port, 'Content-Type': params.headers.contentType, 'Content-length': params.body.length}); 
-    request.on('response', callback);
-    request.end(params.body, 'utf8');
-}
+    databaseCleaner = require('./helper/database-cleaner');
 
 module.exports = testCase({
     setUp: function (callback) {
@@ -27,13 +20,14 @@ module.exports = testCase({
     },
     tearDown: function (callback) {
         app.close();
+        databaseCleaner.clean();
         callback();
     },
     'should return 200': function (test) {
         this.requestParams.uri = '/hit/videos/media/123';
         this.requestParams.method = 'POST';
 
-        makeRequest(this.requestParams, function(response) {
+        testHelper.makeRequest(this.requestParams, function(response) {
             test.equals (response.statusCode, 200);
             test.done();
         });

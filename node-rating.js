@@ -1,5 +1,5 @@
 require.paths.unshift(__dirname + '/lib');
-require.paths.unshift('vendor/mongoose');
+require.paths.unshift(__dirname + '/vendor/mongoose');
 
 var express = require('express'),
     app = express.createServer(),
