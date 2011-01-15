@@ -1,7 +1,5 @@
 require('./helper/test-helper');
 
-//console.log(require.paths);
-
 var testCase = require('nodeunit').testCase,
     mongoose = require('mongoose').Mongoose,
     db = mongoose.connect('mongodb://localhost/rating_test'),
