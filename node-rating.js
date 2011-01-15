@@ -41,8 +41,3 @@ app.post('/hit/:context/:subject/:id', function(req, res) {
 });
 
 module.exports = app;
-
-// module.exports = function (hit) {
-//     app.Hit = Hit = hit || require('hit').Hit(db);
-//     return app;
-// };
