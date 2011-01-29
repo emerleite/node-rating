@@ -1,2 +1,5 @@
 lixo
 vendor
+*#
+.#*
+.tmp_*~
