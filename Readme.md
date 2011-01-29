@@ -1,6 +1,6 @@
 Node Rating
 ===========
-Rating an Hit system
+Rating and Hit system
 
 Dependencies
 ------------
@@ -19,8 +19,6 @@ curl -X POST http://localhost:3000/:context/:subject/:id
 
 To-Do
 -----
-* Hit increment
-* Rate with cookie to avoid duplicate rate
 * URIs to consume totals
 * Security key
 * Code coverage
