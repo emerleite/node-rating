@@ -13,7 +13,7 @@ module.exports = testCase({
       , method: 'GET'
       , body: ''
       , headers: {
-        contentType: 'text/plain'
+          contentType: 'text/plain'
       }
     };
     callback();
@@ -23,6 +23,7 @@ module.exports = testCase({
     databaseCleaner.clean();
     if (this.hitStub) this.hitStub.restore();
     if (this.rateStub) this.rateStub.restore();
+    debugger;
     callback();
   },
   'should return 500 when can not hit': function (test) {

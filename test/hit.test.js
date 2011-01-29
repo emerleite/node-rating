@@ -1,9 +1,11 @@
 require('./helper/test-helper');
 
 var testCase = require('nodeunit').testCase
-  , mongoose = require('mongoose').Mongoose
-  , db = mongoose.connect('mongodb://localhost/rating_test')
+  , mongoose = require('mongoose')
+  , db = mongoose.createConnection('mongodb://localhost/rating_test')
   , Hit = require('hit').Hit(db);
+
+//console.log(require('sys').inspect(mongoose));
 
 module.exports = testCase({
   setUp: function (callback) {
@@ -14,15 +16,11 @@ module.exports = testCase({
     callback();
   },
   'It should have correct context, subject and id': function (test) {
-    var hit = new Hit();
-    hit.context = 'video';
-    hit.subject = 'media';
-    hit.id = '1234';
-    hit.save(function(err,doc) {
-      this.hit = hit;
-      test.equals (doc.context, 'video');
-      test.equals (doc.subject, 'media');
-      test.equals (doc.id, '1234');
+    var hitData = {context: 'video', subject: 'media', id: '1234'};
+    var hit = new Hit(hitData);
+    hit.save(function(err) {
+      test.strictEqual(err, null);
+      test.ok(!hit.isNew);
       test.done();
     });
   }

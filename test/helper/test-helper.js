@@ -3,7 +3,7 @@ var path = require('path')
   , http = require('http');
 
 require.paths.unshift('lib');
-require.paths.unshift('vendor/mongoose');
+//require.paths.unshift(path.join(__dirname, '../../vendor/mongoose/lib'));
 
 exports.makeRequest = function (params, callback) {
   var headers = {'host': params.host +':' + params.port, 'Content-Type': params.headers.contentType, 'Content-length': params.body.length};

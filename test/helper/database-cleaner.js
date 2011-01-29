@@ -1,9 +1,9 @@
 require('./test-helper');
 
-var mongoose = require('mongoose').Mongoose;
+var mongoose = require('mongoose');
 
 exports.clean = function () {
-  var db = mongoose.connect('mongodb://localhost/rating_test'),
+  var db = mongoose.createConnection('mongodb://localhost/rating_test'),
   Hit = require('hit').Hit(db),
   Rate = require('rate').Rate(db);
   
