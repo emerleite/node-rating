@@ -43,7 +43,7 @@ app.post('/hit/:context/:subject/:id', function(req, res) {
   hit.context = req.params.context;
   hit.subject = req.params.subject;
   hit.id = req.params.id;
-  hit.save(function(err,doc) {
+  hit.save(function(err) {
     if (!err) {
       res.send(200);
     } else {
@@ -63,7 +63,7 @@ app.post('/rate/:context/:subject/:id', function(req, res) {
   rate.context = req.params.context;
   rate.subject = req.params.subject;
   rate.id = req.params.id;
-  rate.save(function(err,doc) {
+  rate.save(function(err) {
     if (!err) {
       res.cookie(cookieName, "true", { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 365)), httpOnly: true });
       res.send(200);
