@@ -32,7 +32,7 @@ module.exports = testCase({
     });
     this.requestParams.uri = '/hit/videos/media/123';
     this.requestParams.method = 'POST';
-    
+
     testHelper.makeRequest(this.requestParams, function(response) {
       test.equals (response.statusCode, 500);
       test.done();
@@ -50,7 +50,7 @@ module.exports = testCase({
   'should return 200 when rate': function(test) {
     this.requestParams.uri = '/rate/videos/media/123';
     this.requestParams.method = 'POST';
-    
+
     testHelper.makeRequest(this.requestParams, function(response) {
       test.equals (response.statusCode, 200);
       var regexp_cookie = /rate_videos_media_123=true/;
@@ -62,7 +62,7 @@ module.exports = testCase({
     this.requestParams.uri = '/rate/videos/media/123';
     this.requestParams.method = 'POST';
     this.requestParams.headers.cookie = 'rate_videos_media_123=rate';
-    
+
     testHelper.makeRequest(this.requestParams, function(response) {
       test.equals (response.statusCode, 400);
       test.done();
@@ -74,10 +74,25 @@ module.exports = testCase({
     });
     this.requestParams.uri = '/rate/videos/media/123';
     this.requestParams.method = 'POST';
-    
+
     testHelper.makeRequest(this.requestParams, function(response) {
       test.equals (response.statusCode, 500);
       test.done();
+    });
+  },
+  'should hit count given an element': function(test) {
+    var requestParams = this.requestParams;
+    requestParams.uri = '/hit/videos/media/123';
+    requestParams.method = 'POST';
+
+    testHelper.makeRequest(requestParams, function(response) {
+      testHelper.makeRequest(requestParams, function(response) {
+        requestParams.method = 'GET';
+        testHelper.makeRequest(requestParams, function(response) {
+          test.equals (response.body, '2');
+          test.done();
+        });
+      });
     });
   }
 });

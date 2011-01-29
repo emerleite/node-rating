@@ -3,7 +3,6 @@ var path = require('path')
   , http = require('http');
 
 require.paths.unshift('lib');
-//require.paths.unshift(path.join(__dirname, '../../vendor/mongoose/lib'));
 
 exports.makeRequest = function (params, callback) {
   var headers = {'host': params.host +':' + params.port, 'Content-Type': params.headers.contentType, 'Content-length': params.body.length};
@@ -13,7 +12,16 @@ exports.makeRequest = function (params, callback) {
   var client = http.createClient(params.port, params.host);
   var request = client.request(params.method, params.uri, headers); 
   
-  request.on('response', callback);
+  request.on('response', function (response) {
+    response.body = '';
+    response.on('data', function (chunk) {
+      response.body += chunk;
+    });
+    response.on('end', function () {
+      callback.apply(null, [response]);
+    });
+  });
+
   request.end(params.body, 'utf8');
 };
 

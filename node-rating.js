@@ -26,6 +26,18 @@ db = mongoose.createConnection(app.set('db-uri'));
 app.Hit = require('hit').Hit(db);
 app.Rate = require('rate').Rate(db);
 
+app.get('/hit/:context/:subject/:id', function(req, res) {
+  var queryData = {
+      context: req.params.context
+    , subject: req.params.subject
+    , id: req.params.id };
+
+  app.Hit.count(queryData, function (err, count) {
+     res.send(count.toString(), 200);
+  });
+
+});
+
 app.post('/hit/:context/:subject/:id', function(req, res) {
   var hit = new app.Hit();
   hit.context = req.params.context;
@@ -43,7 +55,7 @@ app.post('/hit/:context/:subject/:id', function(req, res) {
 app.post('/rate/:context/:subject/:id', function(req, res) {
   var cookieName = "rate_" + req.params.context + "_" + req.params.subject + "_" + req.params.id;
 
-  if (cookieName in req.cookies) { 
+  if (cookieName in req.cookies) {
     res.send(400);
   }
 
