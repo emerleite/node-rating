@@ -7,13 +7,13 @@ var express = require('express')
   , mongoose = require('mongoose').Mongoose;
 
 app.configure(function () {
-  app.use(express.logger());
   app.use(express.cookieDecoder());
   app.use(express.bodyDecoder());
   app.use(express.staticProvider(__dirname + '/public'));
 });
 
 app.configure('development', function() {
+  app.use(express.logger());
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('db-uri', 'mongodb://localhost/rating_development');
 });
