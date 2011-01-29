@@ -13,7 +13,7 @@ module.exports = testCase({
         Hit.remove({}, function () {});
         callback();
     },
-    'It should have correct context and id': function (test) {
+    'It should have correct context, subject and id': function (test) {
         var hit = new Hit();
         hit.context = 'video';
         hit.subject = 'media';
