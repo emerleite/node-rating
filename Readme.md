@@ -17,6 +17,12 @@ $ node server.js
 
 curl -X POST http://localhost:3000/:context/:subject/:id
 
+Running tests
+-------------
+$ nodeunit test
+or
+$ node run-tests
+
 To-Do
 -----
 * URIs to consume totals
