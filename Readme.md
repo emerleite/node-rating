@@ -15,7 +15,16 @@ Running
 -------
 $ node server.js
 
-curl -X POST http://localhost:3000/:context/:subject/:id
+### Usuage
+
+Hit insert
+$ curl -X POST http://localhost:3000/hit/:context/:subject/:id
+
+Hit count
+$ curl http://localhost:3000/hit/:context/:subject/:id
+
+Rate insert
+$ curl -X POST http://localhost:3000/rate/:context/:subject/:id
 
 Running tests
 -------------
