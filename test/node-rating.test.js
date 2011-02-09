@@ -1,6 +1,7 @@
 var testHelper = require('./helper/test-helper')
   , app = require('../node-rating')
-  , databaseCleaner = require('./helper/database-cleaner')
+  , mongoose = require('mongoose')
+  , databaseCleaner = require('database-cleaner')
   , testCase = require('nodeunit').testCase
   , testPort = '3000';
 
@@ -20,7 +21,7 @@ module.exports = testCase({
   },
   tearDown: function (callback) {
     app.close();
-    databaseCleaner.clean();
+    databaseCleaner.clean(mongoose.createConnection('mongodb://localhost/rating_test').db);
     if (this.hitStub) this.hitStub.restore();
     if (this.rateStub) this.rateStub.restore();
     debugger;
