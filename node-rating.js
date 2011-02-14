@@ -1,5 +1,3 @@
-require.paths.unshift('./lib');
-
 var express = require('express')
   , app = express.createServer()
   , db
@@ -36,6 +34,17 @@ app.get('/hit/:context/:subject/:id', function(req, res) {
      res.send(count.toString(), 200);
   });
 
+});
+
+app.get('/rate/:context/:subject/:id', function(req, res) {
+  var queryData = {
+      context: req.params.context
+    , subject: req.params.subject
+    , id: req.params.id };
+
+  app.Rate.count(queryData, function (err, count) {
+     res.send(count.toString(), 200);
+  });
 });
 
 app.post('/hit/:context/:subject/:id', function(req, res) {

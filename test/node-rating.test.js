@@ -95,5 +95,20 @@ module.exports = testCase({
         });
       });
     });
+  },
+  'should get thumbs up count given an element': function(test) {
+    var requestParams = this.requestParams;
+    requestParams.uri = '/rate/videos/media/123';
+    requestParams.method = 'POST';
+
+    testHelper.makeRequest(requestParams, function(response) {
+      testHelper.makeRequest(requestParams, function(response) {
+        requestParams.method = 'GET';
+        testHelper.makeRequest(requestParams, function(response) {
+          test.equals (response.body, '2');
+          test.done();
+        });
+      });
+    });
   }
 });
