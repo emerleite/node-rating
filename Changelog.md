@@ -1,3 +1,6 @@
+### 0.2.2
+- Added rate count for thumbs up
+
 ### 0.2.1
 - Extracted database cleaner to a npm package
 - Using node-database-cleaner to clean mongodb after tests

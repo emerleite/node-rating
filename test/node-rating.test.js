@@ -81,7 +81,7 @@ module.exports = testCase({
       test.done();
     });
   },
-  'should hit count given an element': function(test) {
+  'should get hit count given an element': function(test) {
     var requestParams = this.requestParams;
     requestParams.uri = '/hit/videos/media/123';
     requestParams.method = 'POST';
