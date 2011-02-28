@@ -1,3 +1,4 @@
+require.paths.unshift('./lib');
 var express = require('express')
   , app = express.createServer()
   , db
