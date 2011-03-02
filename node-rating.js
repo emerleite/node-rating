@@ -52,7 +52,7 @@ app.get('/rate/:context/:subject/:id', function(req, res) {
     , subject: req.params.subject
     , id: req.params.id };
 
-  app.Rate.count(queryData, function (err, count) {
+  app.Rate.total(queryData, function (err, count) {
      res.send(count.toString(), 200);
   });
 });
@@ -60,11 +60,8 @@ app.get('/rate/:context/:subject/:id', function(req, res) {
 app.post('/hit/:context/:subject/:id', function(req, res) {
   var hitData = {context: req.params.context, subject: req.params.subject, id: req.params.id, date: currentHour()};
   app.Hit.hit(hitData, function (err) {
-    if (!err) {
-      res.send(200);
-    } else {
-      res.send(500);
-    }
+    if (err) { res.send(500); res.end(); }
+    res.send(200);
   });
 });
 
@@ -73,19 +70,14 @@ app.post('/rate/:context/:subject/:id', function(req, res) {
 
   if (cookieName in req.cookies) {
     res.send(400);
+    res.end();
   }
 
-  var rate = new app.Rate();
-  rate.context = req.params.context;
-  rate.subject = req.params.subject;
-  rate.id = req.params.id;
-  rate.save(function(err) {
-    if (!err) {
-      res.cookie(cookieName, "true", { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 365)), httpOnly: true });
-      res.send(200);
-    } else {
-      res.send(500);
-    }
+  var rateData = {context: req.params.context, subject: req.params.subject, id: req.params.id, date: currentHour()};
+  app.Rate.rate(rateData, function (err) {
+    if (err) { res.send(500); res.end(); }
+    res.cookie(cookieName, "true", { expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 365)), httpOnly: true });
+    res.send(200);
   });
 });
 module.exports = app;
