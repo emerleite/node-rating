@@ -34,3 +34,14 @@ exports.stub = function (target, fn) {
     }
   };
 };
+
+exports.fakeDate = function(hour) {
+  var currentHour = new Date();
+  currentHour.setMinutes(0);
+  currentHour.setSeconds(0);
+  currentHour.setMilliseconds(0);
+  if (hour) {
+    currentHour.setHours(hour);
+  }
+  return currentHour;
+};
