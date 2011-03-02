@@ -13,17 +13,6 @@ module.exports = testCase({
   tearDown: function (callback) {
     databaseCleaner.clean(mongoose.createConnection('mongodb://localhost/rating_test').db, callback);
   },
-  // 'It should have correct context, subject and id': function (test) {
-  //   var rate = new Rate();
-  //   rate.context = 'video';
-  //   rate.subject = 'media';
-  //   rate.id = '1234';
-  //   rate.save(function(err) {
-  //     test.strictEqual(err, null);
-  //     test.ok(!rate.isNew);
-  //     test.done();
-  //   });
-  // }
   'It should have correct context, subject and id': function (test) {
     var rateData = {context: 'video', subject: 'media', id: '1234', date: testHelper.fakeDate()};
     Rate.rate(rateData, function(err) {
