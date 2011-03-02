@@ -3,7 +3,7 @@ var testHelper = require('./helper/test-helper')
   , mongoose = require('mongoose')
   , databaseCleaner = require('database-cleaner')
   , testCase = require('nodeunit').testCase
-  , testPort = '3000';
+  , testPort = '9999';
 
 module.exports = testCase({
   setUp: function (callback) {
@@ -24,7 +24,6 @@ module.exports = testCase({
     databaseCleaner.clean(mongoose.createConnection('mongodb://localhost/rating_test').db);
     if (this.hitStub) this.hitStub.restore();
     if (this.rateStub) this.rateStub.restore();
-    debugger;
     callback();
   },
   'should return 500 when can not hit': function (test) {
