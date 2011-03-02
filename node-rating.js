@@ -4,6 +4,14 @@ var express = require('express')
   , db
   , mongoose = require('mongoose');
 
+var currentHour = function() {
+  var hour = new Date();
+  hour.setMinutes(0);
+  hour.setSeconds(0);
+  hour.setMilliseconds(0);
+  return hour;
+};
+
 app.configure(function () {
   app.use(express.cookieDecoder());
   app.use(express.bodyDecoder());
@@ -27,11 +35,12 @@ app.Rate = require('rate').Rate(db);
 
 app.get('/hit/:context/:subject/:id', function(req, res) {
   var queryData = {
-      context: req.params.context
+      date: currentHour()
+    , context: req.params.context
     , subject: req.params.subject
     , id: req.params.id };
 
-  app.Hit.count(queryData, function (err, count) {
+  app.Hit.total(queryData, function (err, count) {
      res.send(count.toString(), 200);
   });
 
@@ -49,11 +58,8 @@ app.get('/rate/:context/:subject/:id', function(req, res) {
 });
 
 app.post('/hit/:context/:subject/:id', function(req, res) {
-  var hit = new app.Hit();
-  hit.context = req.params.context;
-  hit.subject = req.params.subject;
-  hit.id = req.params.id;
-  hit.save(function(err) {
+  var hitData = {context: req.params.context, subject: req.params.subject, id: req.params.id, date: currentHour()};
+  app.Hit.hit(hitData, function (err) {
     if (!err) {
       res.send(200);
     } else {
