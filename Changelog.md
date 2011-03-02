@@ -1,3 +1,7 @@
+### 0.2.3
+- Write only one record for the same hour
+- Update mongoose to 1.0.10
+
 ### 0.2.2
 - Added rate count for thumbs up
 

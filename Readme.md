@@ -5,11 +5,15 @@ Rating and Hit system
 Dependencies
 ------------
 
-* Node 0.2.x+
-* npm
-* express
+### Runtime
+
+* Node 0.4.x+
+* express 1.0.7
+* connect 0.5.7
+* mongoose 1.0.10  (and MongoDB server)
+
+### Tests
 * nodeunit
-* mongoose (and MongoDB server)
 
 Running
 -------
@@ -20,11 +24,13 @@ $ node server.js
 Hit insert
 $ curl -X POST http://localhost:3000/hit/:context/:subject/:id
 
-Hit count
+Hit count for the current hour
 $ curl http://localhost:3000/hit/:context/:subject/:id
 
 Rate insert
 $ curl -X POST http://localhost:3000/rate/:context/:subject/:id
+
+Rate count
 
 Running tests
 -------------
