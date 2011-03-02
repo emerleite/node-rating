@@ -1,7 +1,8 @@
 var testHelper = require('./helper/test-helper')
   , app = require('../node-rating')
   , mongoose = require('mongoose')
-  , databaseCleaner = require('database-cleaner')
+  , DatabaseCleaner = require('database-cleaner')
+  , databaseCleaner = new DatabaseCleaner('mongodb')
   , testCase = require('nodeunit').testCase
   , testPort = '9999';
 

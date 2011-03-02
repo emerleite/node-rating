@@ -1,5 +1,6 @@
 var testHelper = require('./helper/test-helper')
-  , databaseCleaner = require('database-cleaner')
+  , DatabaseCleaner = require('database-cleaner')
+  , databaseCleaner = new DatabaseCleaner('mongodb')
   , testCase = require('nodeunit').testCase
   , mongoose = require('mongoose')
   , db = mongoose.createConnection('mongodb://localhost/rating_test')

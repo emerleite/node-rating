@@ -1,3 +1,6 @@
+### 0.2.4
+- Update database-cleaner to 0.2.0
+
 ### 0.2.3
 - Write only one record for the same hour
 - Update mongoose to 1.0.10
