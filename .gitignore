@@ -3,3 +3,7 @@ vendor
 *#
 .#*
 .tmp_*~
+cluster.*
+nohup.out
+logs/*.log
+pids/*.pid
