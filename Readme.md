@@ -11,13 +11,18 @@ Dependencies
 * express 1.0.7
 * connect 0.5.7
 * mongoose 1.0.10  (and MongoDB server)
+* cluster 0.3.2 (optional)
 
 ### Tests
 * nodeunit
 
 Running
 -------
-$ node server.js
+### Normal
+$ node server.js 
+
+### Clustered
+$ node cluster-server.js
 
 ### Usuage
 

@@ -1,3 +1,5 @@
+### 0.2.5
+- Added cluster support
 ### 0.2.4
 - Update database-cleaner to 0.2.0
 
