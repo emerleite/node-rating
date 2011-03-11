@@ -29,6 +29,12 @@ app.configure('test', function() {
   app.set('db-uri', 'mongodb://localhost/rating_test');
 });
 
+app.configure('production', function() {
+  app.use(express.logger());
+  app.use(express.errorHandler());
+  app.set('db-uri', 'mongodb://localhost/rating');
+});
+
 db = mongoose.createConnection(app.set('db-uri'));
 app.Hit = require('hit').Hit(db);
 app.Rate = require('rate').Rate(db);
