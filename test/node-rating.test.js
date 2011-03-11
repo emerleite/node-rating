@@ -110,5 +110,23 @@ module.exports = testCase({
         });
       });
     });
+  },
+  'should return 0 when getting rate count for an inexistent element': function(test) {
+    var requestParams = this.requestParams;
+    requestParams.uri = '/rate/videos/media/123';
+    requestParams.method = 'GET';
+    testHelper.makeRequest(requestParams, function(response) {
+      test.equals (response.body, '0');
+      test.done();
+    });
+  },
+  'should return 0 when getting hit count for an inexistent element': function(test) {
+    var requestParams = this.requestParams;
+    requestParams.uri = '/hit/videos/media/123';
+    requestParams.method = 'GET';
+    testHelper.makeRequest(requestParams, function(response) {
+      test.equals (response.body, '0');
+      test.done();
+    });
   }
 });
