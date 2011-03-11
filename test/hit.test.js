@@ -74,6 +74,13 @@ module.exports = testCase({
       });
     });
   },
+  'should return 0 when not found': function(test) {
+    var currentHour = testHelper.fakeDate(10);
+    Hit.total({context: 'video', subject: 'media', id: '1234', date: currentHour}, function (err, total) {
+      test.equal(total, 0, "should have no record");
+      test.done();
+    });
+  },
   'it should require date': function(test) {
     var hitData = {context: 'video', subject: 'media', id: '1234'};
     Hit.hit(hitData, function (err) {
