@@ -68,10 +68,17 @@ module.exports = testCase({
       Rate.rate({context: 'video', subject: 'media', id: '1234', date: nextHour}, function (err){
         test.ok(!err, "should not raise error");
         Rate.total({context: 'video', subject: 'media', id: '1234', date: currentHour}, function (err, total) {
-          test.equal(total, 1, "should have two record");
+          test.equal(total, 1, "should have one record");
           test.done();
         });
       });
+    });
+  },
+  'should return 0 when not found': function(test) {
+    var currentHour = testHelper.fakeDate(10);
+    Rate.total({context: 'video', subject: 'media', id: '1234', date: currentHour}, function (err, total) {
+      test.equal(total, 0, "should have no record");
+      test.done();
     });
   },
   'it should require date': function(test) {
@@ -81,8 +88,4 @@ module.exports = testCase({
       test.done();
     });
   }
-
-
-
-
 });
