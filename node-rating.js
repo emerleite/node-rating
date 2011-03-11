@@ -31,7 +31,7 @@ app.configure('test', function() {
 
 app.configure('production', function() {
   app.use(express.logger());
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.errorHandler());
   app.set('db-uri', 'mongodb://localhost/rating');
 });
 
