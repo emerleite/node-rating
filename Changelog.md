@@ -1,8 +1,14 @@
+### 0.2.7
+- Bug Fix: Return 0 when GET total from not found hit search
+- Bug Fix: Return 0 when GET total from not found rate search
+
 ### 0.2.6
 - Using parseInt because cluster needs integer value for cluster.liste(port)
 - Added production configuration to express app config
+
 ### 0.2.5
 - Added cluster support
+
 ### 0.2.4
 - Update database-cleaner to 0.2.0
 
