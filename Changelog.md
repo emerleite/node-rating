@@ -1,3 +1,6 @@
+### 0.2.6
+- Using parseInt because cluster needs integer value for cluster.liste(port)
+- Added production configuration to express app config
 ### 0.2.5
 - Added cluster support
 ### 0.2.4
